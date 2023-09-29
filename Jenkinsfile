@@ -2,9 +2,11 @@ pipeline {
   agent any
 
   stages {
-    stage('Primeiro Passo') {
+    stage('Build project image') {
       steps {
-        echo 'Primeiro deploy com Jenkins'
+        script {
+          dockerapp = docker.build("elenaevangelista/first-deploy-aws", "-f ./Dockerfile ./")
+        }
       }
     }
   }
